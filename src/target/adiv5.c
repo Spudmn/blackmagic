@@ -28,6 +28,7 @@
 #include "cortexm.h"
 #include "exception.h"
 
+
 #ifndef DO_RESET_SEQ
 #define DO_RESET_SEQ 0
 #endif
@@ -334,10 +335,15 @@ static void adiv5_component_probe(ADIv5_AP_t *ap, uint32_t addr)
 					DEBUG("-> cortexm_probe\n");
 					cortexm_probe(ap);
 					break;
+
+#ifndef DISABLE_CORTEX_A
 				case aa_cortexa:
 					DEBUG("-> cortexa_probe\n");
 					cortexa_probe(ap, addr);
 					break;
+#endif
+
+
 				default:
 					break;
 				}
